@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Movimiento : MonoBehaviour
 {
-    float speed = 5f;
+    float speed = 10f;
 
     public Camera mainCamera;
     private Vector3 camForward;
