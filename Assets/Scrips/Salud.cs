@@ -22,7 +22,7 @@ public class Salud : MonoBehaviour
         vida -= daño;
         if(vida <= 0)
         {
-            Destroy(gameObject);
+            this.transform.position = new Vector3(3.32f, 15.12f, 53.66f);
         }
     }
 }

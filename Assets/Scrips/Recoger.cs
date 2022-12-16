@@ -16,18 +16,21 @@ public class Recoger : MonoBehaviour
         if(other.tag == "Player")
         {
             inventario = other.GetComponent<Inventario>();
-            if(this.tag == "Copa")
+            if(this.tag == "Copa" && !inventario.copa)
             {
                 inventario.copa = true;
-                Destroy(gameObject);
+                this.transform.position = new Vector3(-2.598f, 15.187f, 68.343f);
             }
-            if(this.tag == "Daga")
+            if(this.tag == "Daga" && !inventario.Daga)
             {
                 inventario.Daga = true;
-                Destroy(gameObject);
+                this.transform.position = new Vector3(-4.2449f, 16.807f, 70.75f);
             }
-            inventario.Vela = true;
-            Destroy(gameObject);
+            if (this.tag == "Vela" && !inventario.Vela)
+            {
+                inventario.Vela = true;
+                this.transform.position = new Vector3(-1.297f, 16.53f, 69.843f);
+            }
         }
     }
 }

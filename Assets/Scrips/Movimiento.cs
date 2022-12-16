@@ -6,14 +6,20 @@ public class Movimiento : MonoBehaviour
 {
     float speed = 10f;
 
+    Rigidbody rb;
+
     public Camera mainCamera;
     private Vector3 camForward;
     private Vector3 camRight;
 
+    bool floorDetected = false;
+    bool isJump = false;
+    public float jumpForce = 5.0f;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -36,6 +42,26 @@ public class Movimiento : MonoBehaviour
         else if (Input.GetKey(KeyCode.A))
         {
             movementinput.x = -1;
+        }
+
+        Vector3 floor = transform.TransformDirection(Vector3.down);
+
+        if (Physics.Raycast(transform.position, floor, 1.03f))
+        {
+            floorDetected = true;
+            // print("Contacto");
+        }
+        else
+        {
+            floorDetected = false;
+            // print("No Contacto");
+        }
+
+        isJump = Input.GetButtonDown("Jump");
+
+        if (isJump && floorDetected)
+        {
+            rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
         }
 
         movementinput = movementinput.x * camRight + movementinput.z * camForward;
